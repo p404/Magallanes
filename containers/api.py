@@ -16,7 +16,7 @@ def magallanes_init():
    for event in watch_obj.stream(v1.list_service_for_all_namespaces):
       if (event['type'] == 'ADDED' or event['type'] == 'MODIFIED') & (event['object'].metadata.annotations is not None):
           if 'magallanes' in event['object'].metadata.annotations:
-            if  event['object'].status.load_balancer.ingress is not None:
+            if event['object'].status.load_balancer.ingress is not None:
                hostname, host, external, port = magallanes_service(event['object'])
                add_host(hostname, host, external, port)
       if (event['type'] == 'DELETED') &  (event['object'].metadata.annotations is not None):

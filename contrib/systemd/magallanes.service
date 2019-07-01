@@ -1,0 +1,15 @@
+[Unit]
+Description=Magallanes Bare metal ingress manager
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/opt/magallanes/magallanes.py -c /etc/magallanes/config.ini
+KillMode=process
+TimeoutSec=10
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
