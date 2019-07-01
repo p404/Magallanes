@@ -1,13 +1,14 @@
 import boto3
 from common.utils import hash
 from config.main  import (AWS_ACCESS_KEY, AWS_SECRET_KEY, ROUTE53_REGION,
-                          HOST_ZONE_ID, REFRESH_INTERVAL, CNAME_HOST)
+                          HOST_ZONE_ID, REFRESH_INTERVAL, EXTERNAL_CNAME,
+                          INTERNAL_HOST)
 
 def record_type(external):
     return "CNAME" if external is True else "A"
 
 def host_value(host, record_type):
-    return CNAME_HOST if record_type == 'CNAME' else host
+    return EXTERNAL_CNAME if record_type == 'CNAME' else INTERNAL_HOST
 
 def route53_client():
     session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_KEY)
