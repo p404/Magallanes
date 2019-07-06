@@ -9,7 +9,8 @@ Group=root
 ExecStart=/opt/Magallanes/magallanes.py -c /etc/Magallanes/config.ini
 KillMode=process
 TimeoutSec=10
-Restart=no
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target
